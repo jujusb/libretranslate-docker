@@ -1,0 +1,17 @@
+(common) {
+	encode gzip zstd
+}
+
+(common_tls) {
+	{$TLS_CONFIG}
+}
+
+https://{$TRANSLATE_SERVER_ADDRESS} {
+	import common
+	import common_tls
+		
+	reverse_proxy libretranslate:5000  {
+		header_up Host {host}
+		header_up X-Real-IP {remote_host}
+	}
+}
