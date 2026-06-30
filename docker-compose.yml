@@ -20,10 +20,10 @@ services:
      - LT_API_KEYS_DB_PATH=/app/db/api_keys.db # Same result as `db/api_keys.db` or `./db/api_keys.db`
     # Uncomment these vars and libretranslate_models volume to optimize loading time.
      - LT_UPDATE_MODELS=true
-     - LT_LOAD_ONLY=${LT_LOAD_ONLY:-} # Example: "en,es,fr"
+     - LT_LOAD_ONLY=${TRANSLATE_LOAD_ONLY:-} # Example: "en,es,fr"
      - LT_DISABLE_WEB_UI=false    # set true if API only
     ports:
-     - "${LT_PORT:-5000}:5000"
+     - "${TRANSLATE_PORT:-5000}:5000"
     volumes:
      - libretranslate_api_keys:/app/db
       #Keep the models in a docker volume, to avoid re-downloading on startup
